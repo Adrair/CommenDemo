@@ -32,7 +32,7 @@ public class BatchProduce {
         //String startsql = "insert into imerc.t_merc_crdinfo(store_id,crdstore_id,crd_typ,main_body,body_nm,eff_flg,tm_smp)values('";//门店开通卡权限-统一商户管理
         String startsql = "insert into ipay.t_urm_mercrdinfo (merc_id,merc_nm,out_merc_id,merc_level,main_body,pre_crd_typ,eff_flg,lst_opr_tm,tm_smp)values('";//门店开通卡权限-互联网方向
 
-        String [] sql={startsql,insql1,endsql};
+        String[] sql = {startsql, insql1, endsql};
 
         //存储每一行数据
         ArrayList<String> arrayList = new ArrayList<String>();
@@ -80,14 +80,13 @@ public class BatchProduce {
                 details.add(sb.toString());
                 j++;
             }
-        }
-        else if (excelPath.endsWith("xls") || excelPath.endsWith("xlsx")) { //文件是excel 格式
+        } else if (excelPath.endsWith("xls") || excelPath.endsWith("xlsx")) { //文件是excel 格式
 
             try {
                 InputStream excelFile = new FileInputStream(new File(excelPath));
                 Workbook wb = null;
 
-                if(excelPath.endsWith("xls")){
+                if (excelPath.endsWith("xls")) {
                     wb = new HSSFWorkbook(excelFile);
                 } else {
                     System.out.println("文件类型错误!");
@@ -97,18 +96,18 @@ public class BatchProduce {
 
                 //开始解析excel文件
                 Sheet sheet = wb.getSheetAt(0);//读取sheet0
-                for(int i = 1;i<= sheet.getLastRowNum()+1;i++){ //遍历行
+                for (int i = 1; i <= sheet.getLastRowNum() + 1; i++) { //遍历行
                     StringBuilder sb = new StringBuilder();
                     sb.append(sql[0]);
-                    Row row= sheet.getRow(i);//获取每一行的内容
-                    if(row != null){
-                        for (int j = 0; j < row.getLastCellNum() ; j++){//遍历列
-                            Cell cell=row.getCell(j);
-                            if(cell != null){
+                    Row row = sheet.getRow(i);//获取每一行的内容
+                    if (row != null) {
+                        for (int j = 0; j < row.getLastCellNum(); j++) {//遍历列
+                            Cell cell = row.getCell(j);
+                            if (cell != null) {
                                 cell.setCellType(CellType.STRING);//定义单元格的数据类型，转换成字符串类型
-                                if(j == row.getLastCellNum()-1){
+                                if (j == row.getLastCellNum() - 1) {
                                     sb.append(cell.getStringCellValue().trim()).append(sql[2]);
-                                }else{
+                                } else {
                                     sb.append(cell.getStringCellValue().trim()).append(sql[1]);
                                 }
                             }
@@ -127,7 +126,7 @@ public class BatchProduce {
 
 
         //输出文件
-        if(details.size() != 0){
+        if (details.size() != 0) {
             File file2 = new File(filenameTemp);
             try {
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filenameTemp), "GBK"));
@@ -135,7 +134,7 @@ public class BatchProduce {
                     file2.createNewFile();
                 }
                 for (String detail : details) {
-                    if(detail!=null){
+                    if (detail != null) {
                         writer.write(detail.trim());
                         writer.newLine();//换行
                         writer.flush();

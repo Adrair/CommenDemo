@@ -16,7 +16,7 @@ public class Demo {
         String red_crd_list = "";
         red_crd_list = red_crd_list.replace("\r\n", ";"); //支持回车分隔
         String[] batch_cloning_param = red_crd_list.split(";");
-        System.out.println("长度="+batch_cloning_param.length);
+        System.out.println("长度=" + batch_cloning_param.length);
         /*if(red_crd_list.length()!=0){
             red_crd_list = red_crd_list.substring(0, red_crd_list.length() - 1);
         }
@@ -131,17 +131,15 @@ public class Demo {
             System.out.println("证件类型不正确2");
         }*/
 
-        String regString1="中ed,z.中，那几幅啊。哈";
-        boolean flg3=checkChnesEnglishReg(regString1);
-        System.out.println("flg3="+flg3);
-        if(!checkChnesEnglishReg(regString1)){
+        String regString1 = "中ed,z.中，那几幅啊。哈";
+        boolean flg3 = checkChnesEnglishReg(regString1);
+        System.out.println("flg3=" + flg3);
+        if (!checkChnesEnglishReg(regString1)) {
             System.out.println("正则表达式不正确");
         }
 
 
-
     }
-
 
 
 }

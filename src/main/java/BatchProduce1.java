@@ -79,7 +79,7 @@ public class BatchProduce1 {
                 InputStream excelFile = new FileInputStream(new File(excelPath));
                 Workbook wb = null;
 
-                if(excelPath.endsWith("xls")){
+                if (excelPath.endsWith("xls")) {
                     wb = new HSSFWorkbook(excelFile);
                 } else {
                     System.out.println("文件类型错误!");
@@ -89,20 +89,20 @@ public class BatchProduce1 {
 
                 //开始解析excel文件
                 Sheet sheet = wb.getSheetAt(0);//读取sheet0
-                for(int i = 1;i<= sheet.getLastRowNum()+1;i++){ //遍历行
+                for (int i = 1; i <= sheet.getLastRowNum() + 1; i++) { //遍历行
                     StringBuilder sb = new StringBuilder();
                     sb.append(insert);
-                    Row row= sheet.getRow(i);//获取每一行的内容
-                    if(row != null){
-                        for (int j = 0; j < row.getLastCellNum() ; j++){//遍历列
-                            System.out.println("第"+i+"行数据，第"+j+"列数据");
-                            Cell cell=row.getCell(j);
-                            if(cell != null){
+                    Row row = sheet.getRow(i);//获取每一行的内容
+                    if (row != null) {
+                        for (int j = 0; j < row.getLastCellNum(); j++) {//遍历列
+                            System.out.println("第" + i + "行数据，第" + j + "列数据");
+                            Cell cell = row.getCell(j);
+                            if (cell != null) {
                                 cell.setCellType(CellType.STRING);
-                                if(j == row.getLastCellNum()-1){
+                                if (j == row.getLastCellNum() - 1) {
                                     sb.append(cell.getStringCellValue().trim()).append(endsql);
-                                }else{
-                                    System.out.println("内容="+cell.getStringCellValue());
+                                } else {
+                                    System.out.println("内容=" + cell.getStringCellValue());
                                     sb.append(cell.getStringCellValue().trim()).append(insql);
                                 }
                             }
@@ -121,7 +121,7 @@ public class BatchProduce1 {
 
 
         //输出文件
-        if(details.size() != 0){
+        if (details.size() != 0) {
             File file2 = new File(filenameTemp);
             try {
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filenameTemp), "GBK"));
@@ -129,7 +129,7 @@ public class BatchProduce1 {
                     file2.createNewFile();
                 }
                 for (String detail : details) {
-                    if(detail!=null){
+                    if (detail != null) {
                         writer.write(detail.trim());
                         writer.newLine();//换行
                         writer.flush();

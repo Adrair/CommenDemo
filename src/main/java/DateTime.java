@@ -28,9 +28,9 @@ public class DateTime {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DATE, -1);
-        String push_dt=format3.format(calendar.getTime());
+        String push_dt = format3.format(calendar.getTime());
 
-        System.out.println("日期是："+push_dt);
+        System.out.println("日期是：" + push_dt);
 
 
     }
