@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+
 import static util.RegularUtil.checkChnesEnglishReg;
 
 public class Demo {
@@ -11,7 +13,19 @@ public class Demo {
         System.out.println("red_crd_list="+red_crd_list);
         System.out.println("red_crd_list.length()="+red_crd_list.length());*/
 
-       /* SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String red_crd_list = "";
+        red_crd_list = red_crd_list.replace("\r\n", ";"); //支持回车分隔
+        String[] batch_cloning_param = red_crd_list.split(";");
+        System.out.println("长度="+batch_cloning_param.length);
+        /*if(red_crd_list.length()!=0){
+            red_crd_list = red_crd_list.substring(0, red_crd_list.length() - 1);
+        }
+
+        System.out.println("red_crd_list="+red_crd_list);
+        System.out.println("red_crd_list.length()="+red_crd_list.length());
+
+
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String agr_eff_dt="20160801";
         try {
 
@@ -27,11 +41,11 @@ public class Demo {
         }//日期格式转换
 
         System.out.println("agr_eff_dt="+agr_eff_dt);
-        System.out.println("agr_exp_dt="+agr_exp_dt);*/
+        System.out.println("agr_exp_dt="+agr_exp_dt);
 
-        /*
+        *//*
           判断字符串的根据某个字符分割成数据
-         */
+         *//*
 
         String str1 ="尊敬的客户：您的手机号码：18236573929，已为您重置登陆密码，新的密码为73713287，请妥善保管！";
         String[] s=str1.split("，");
@@ -39,7 +53,7 @@ public class Demo {
         String[] StrArr=s[0].split(",");
         System.out.println("长度s2="+s2.length);
         System.out.println("长度="+s[2]);
-        System.out.println("长度="+s[2].substring(5));
+        System.out.println("长度="+s[2].substring(5));*/
         /*for (int i=0;i<StrArr.length;i++){
             StrArr[i]=String.valueOf(Integer.valueOf(StrArr[i]));
 
