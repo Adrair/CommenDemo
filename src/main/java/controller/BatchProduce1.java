@@ -1,3 +1,5 @@
+package controller;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
@@ -12,28 +14,21 @@ import java.util.ArrayList;
  * <p>
  * 根据SQ模板快速生成SQL脚本
  **/
-public class BatchProduce {
+public class BatchProduce1 {
 
 
     public static void main(String[] args) throws Exception {
 
         //数据来源文件路径
-        String excelPath = "F:\\OK费率\\15store_cnm.xls";
+        String excelPath = "F:\\用于批量脚本生成的excel.xls";
         //输出文件路径
-        String filenameTemp = "F:\\OK费率\\okstore1crdmfee.sql";
+        String filenameTemp = "F:\\batchProduce.txt";
         //脚本中间符号
-        String insql1 = "','";
-        String insql2 = "','";
-        //String insql3= "','";
+        String insql = "','";
         //脚本结束符号
-        //String endsql = "','01','00001','安付宝会员卡','1',to_char(sysdate, 'yyyyMMddHH24miss'));";//门店开通卡权限-统一商户管理
-        String endsql = "','2','00001','2','1',to_char(sysdate, 'yyyyMMddHH24miss'),to_char(sysdate, 'yyyyMMddHH24miss'));";//门店开通卡权限-互联网方向
+        String endsql = "','0',to_char(sysdate, 'yyyyMMddHH24miss'));";
         //插入脚本
-        //String startsql = "insert into imerc.t_merc_crdinfo(store_id,crdstore_id,crd_typ,main_body,body_nm,eff_flg,tm_smp)values('";//门店开通卡权限-统一商户管理
-        String startsql = "insert into ipay.t_urm_mercrdinfo (merc_id,merc_nm,out_merc_id,merc_level,main_body,pre_crd_typ,eff_flg,lst_opr_tm,tm_smp)values('";//门店开通卡权限-互联网方向
-
-        String[] sql = {startsql, insql1, endsql};
-
+        String insert = "insert into imerc.t_merc_mercbusstlcyc(merc_id,crdmerc_id,crd_stlcyc,stl_eff_dt,stl_exp_dt,flg,tm_smp)values('";
         //存储每一行数据
         ArrayList<String> arrayList = new ArrayList<String>();
         //输入流文件
@@ -46,6 +41,7 @@ public class BatchProduce {
 
 
         if (excelPath.endsWith("txt")) { //文件是txt 格式
+            StringBuilder sb = new StringBuilder();
             try {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath), "UTF-8"));
                 String tempString = null;
@@ -67,14 +63,13 @@ public class BatchProduce {
 
             int j = 0;
             for (String ine : arrayList) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(sql[0]);
+                sb.append(insert);
                 String[] content = ine.split("\t");
                 for (int i = 0; i < content.length; i++) {
                     if (i == (content.length - 1)) {
-                        sb.append(content[i].trim()).append(sql[2]);
+                        sb.append(content[i].trim()).append(endsql);
                     } else {
-                        sb.append(content[i].trim()).append(sql[1]);
+                        sb.append(content[i].trim()).append(insql);
                     }
                 }
                 details.add(sb.toString());
@@ -98,17 +93,19 @@ public class BatchProduce {
                 Sheet sheet = wb.getSheetAt(0);//读取sheet0
                 for (int i = 1; i <= sheet.getLastRowNum() + 1; i++) { //遍历行
                     StringBuilder sb = new StringBuilder();
-                    sb.append(sql[0]);
+                    sb.append(insert);
                     Row row = sheet.getRow(i);//获取每一行的内容
                     if (row != null) {
                         for (int j = 0; j < row.getLastCellNum(); j++) {//遍历列
+                            System.out.println("第" + i + "行数据，第" + j + "列数据");
                             Cell cell = row.getCell(j);
                             if (cell != null) {
-                                cell.setCellType(CellType.STRING);//定义单元格的数据类型，转换成字符串类型
+                                cell.setCellType(CellType.STRING);
                                 if (j == row.getLastCellNum() - 1) {
-                                    sb.append(cell.getStringCellValue().trim()).append(sql[2]);
+                                    sb.append(cell.getStringCellValue().trim()).append(endsql);
                                 } else {
-                                    sb.append(cell.getStringCellValue().trim()).append(sql[1]);
+                                    System.out.println("内容=" + cell.getStringCellValue());
+                                    sb.append(cell.getStringCellValue().trim()).append(insql);
                                 }
                             }
                         }

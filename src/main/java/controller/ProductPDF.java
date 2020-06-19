@@ -1,3 +1,5 @@
+package controller;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
@@ -19,10 +21,11 @@ import static util.ZIPUtil.compress;
 
 
 /**
- * @Description TODO
+ * @Description 根据模板生成PDF文件
  * @Author Gjl
  * @Date 2020/5/12 14:17
  * @Version 1.0
+ *
  **/
 public class ProductPDF {
 
