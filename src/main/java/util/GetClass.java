@@ -26,6 +26,7 @@ public class GetClass {
         properties.load(io);
         io.close();
         Object o = properties.get(name);
+
         return o;
     }
 }
