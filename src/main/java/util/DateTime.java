@@ -3,6 +3,10 @@ package util;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
@@ -700,12 +704,33 @@ public class DateTime {
     }
 
     public static void main(String[] args) throws Exception {
-        try {
-            //System.out.print(Integer.valueOf(getTwoDay("2006-11-03 12:22:10", "2006-11-02 11:22:09")));
-        } catch (Exception e) {
-            throw new Exception();
+       LocalTime localTime = LocalTime.now();
+        //SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHmmss");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter sdFormat = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+        String currentDateTime = sdFormat.format(localDateTime);
+        System.out.println(localDateTime);
+        System.out.println(currentDateTime);
+
+        List<String> a = new ArrayList<>();
+        a.add("1");
+        a.add("2");
+        Object o= new Object();
+        List<Long> b =  new ArrayList<>();
+
+        b.add(1L);
+        b.add(2L);
+
+        for(int i=0;i<a.size();i++){
+
+            if(a.contains(b.toString())){
+                System.out.println("1");
+            }
         }
-        //System.out.println("sss");
+
+
+
     }
 
 }
