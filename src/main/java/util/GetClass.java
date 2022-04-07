@@ -24,6 +24,7 @@ public class GetClass {
         InputStream io = ClassLoader.getSystemClassLoader().getResourceAsStream(properFile);
         Properties properties = new Properties();
         properties.load(io);
+        io.close();
         Object o = properties.get(name);
         return o;
     }
