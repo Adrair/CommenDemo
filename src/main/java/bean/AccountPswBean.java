@@ -1,7 +1,10 @@
 package bean;
 
-public class AccountPswBean {
+import java.io.Serializable;
 
+public class AccountPswBean implements Serializable {
+
+    private static final long serialVersionUID = 762678865566637977L;
     private String acount_inf;//账户备注
     private String acount_nm;//登录账户
     private String acount_psw;//登录密码
