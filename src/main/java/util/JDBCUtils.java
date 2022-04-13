@@ -16,9 +16,9 @@ public class JDBCUtils {
 
     static {
         driverClassName="com.mysql.cj.jdbc.Driver";
-        url="jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8";
+        url="jdbc:mysql://localhost:3306/gao_import?serverTimezone=GMT%2B8";
         userName="root";
-        password="123456";
+        password="root";
     }
 
 
