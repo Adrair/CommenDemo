@@ -21,10 +21,10 @@ public class AcountPswDao {
 
     public static void main(String[] args) throws Exception {
         AccountPswBean accountPswBean = new AccountPswBean();
-        accountPswBean.setAcount_inf("慕课网");
-        accountPswBean.setAcount_inf_no("聊天QQ邮箱");
-        accountPswBean.setAcount_nm("1187049830");
-        accountPswBean.setAcount_psw("yuandaxuemeng555");
+        accountPswBean.setAcount_inf("12306");
+        accountPswBean.setAcount_inf_no("主邮箱");
+        accountPswBean.setAcount_nm(" ");
+        accountPswBean.setAcount_psw("gaojinlei123");
 
         try {
             insertAcountInfo(accountPswBean);
